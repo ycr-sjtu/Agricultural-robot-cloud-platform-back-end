@@ -135,6 +135,8 @@ public class SocketServer {
                         robot.setLng(Double.valueOf(v.toString()));
                     } else if (k.equals("lat")) {
                         robot.setLat(Double.valueOf(v.toString()));
+                    } else if (k.equals("url")) {
+                        robot.setUrl(v.toString());
                     }
                 });
                 if (robot.getLng() != null && robot.getLat() != null) {
