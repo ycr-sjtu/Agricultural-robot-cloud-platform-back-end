@@ -64,7 +64,7 @@ public class SocketServer {
             selector = Selector.open();
             // 将通信信道注册到监听器
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-            System.out.println("正在监听" + port + "端口");
+            System.out.println("listening " + port + " port");
             // 监听器一直监听，如果客户端有请求就会进入响应的时间处理
             while (true) {
                 selector.select(); // select()一直阻塞直到相关事件发生或超时
@@ -96,7 +96,7 @@ public class SocketServer {
             socketChannel = serverSocketChannel.accept();
             socketChannel.configureBlocking(false);
             socketChannel.register(selector, SelectionKey.OP_READ);
-            System.out.println("客户端连接成功");
+            System.out.println("Client connection succeeded");
         } else if (selectionKey.isReadable()) {
             socketChannel = (SocketChannel) selectionKey.channel();
             rBuffer.clear();
@@ -105,17 +105,18 @@ public class SocketServer {
             if (count > 0) {
                 rBuffer.flip();
                 //requestMsg = String.valueOf(cs.decode(rBuffer).array());
-                requestMsg = new String(rBuffer.array(),"GB2312").trim();
+                requestMsg = new String(rBuffer.array(),"GB2312").substring(0, count).trim();
                 saveData(requestMsg);
+                rBuffer.clear();
             }
-            // 返回数据
+//            // 返回数据
 //            String responseMsg = "客户端消息：" + requestMsg;
 //			sBuffer = ByteBuffer.allocate(responseMsg.getBytes().length);
 //			sBuffer.put(responseMsg.getBytes("GB2312"));
 //			sBuffer.flip();
 //			socketChannel.write(sBuffer);
 //            sBuffer.clear();
-			//socketChannel.close();
+////			socketChannel.close();
         }
     }
 
@@ -124,7 +125,7 @@ public class SocketServer {
      * @param msg
      */
     private void saveData(String msg) {
-        System.out.println("接收到消息：" + msg);
+        System.out.println("received message：" + msg);
         // 校验json格式
         if (JSON.isValidObject(msg)) {
             try {
@@ -137,6 +138,12 @@ public class SocketServer {
                         robot.setLat(Double.valueOf(v.toString()));
                     } else if (k.equals("url")) {
                         robot.setUrl(v.toString());
+                    } else if(k.equals("vel")) {
+                        robot.setVel(Double.valueOf(v.toString()));
+                    } else if(k.equals("freq1")) {
+                        robot.setFreq1(Double.valueOf(v.toString()));
+                    } else if(k.equals("freq2")) {
+                        robot.setFreq2(Double.valueOf(v.toString()));
                     }
                 });
                 if (robot.getLng() != null && robot.getLat() != null) {
@@ -144,10 +151,13 @@ public class SocketServer {
                     robot.setRobotNumber("未知型号");
                     robot.setTime(new Date());
                     robotService.save(robot);
+                    log.info("save success");
                 }
             } catch (JSONException e) {
-                log.info("格式错误");
+                log.info("json format error");
             }
+        } else {
+            log.info("isValidObject error");
         }
     }
 }

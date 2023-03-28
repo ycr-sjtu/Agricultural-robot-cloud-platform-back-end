@@ -1,20 +1,20 @@
-## 方法1
+# docker部署前后端项目
 
-### 安装docker
+## 1. 安装docker
 
 
 
-### 打包项目
+## 2. 打包项目
 
 前端使用`npm run build`打包，最终打包好的文件夹在`dist`文件夹下。后端可以通过`Maven`打包，得到一个`jar`包。
 
-### 上传至服务器
+## 3. 上传至服务器
 
 在根目录新建一个文件夹，上传打包后的文件。
 
-再
+项目位置：usr/local/nj_test
 
-#### 安装MYSQL
+## 4. 安装MYSQL
 
 ```shell
 docker pull mysql:8.0.32
@@ -32,7 +32,7 @@ docker run -d --name nj_test_mysql_13306 -p 13306:3306 -v /data/mysql:/var/lib/m
 
 **通过远程连接创建数据库和表**
 
-#### 后端
+## 5.  后端
 
 Dockerfile
 
@@ -63,7 +63,7 @@ docker build -t nj_test_spring:0.0.1 .
 docker run -d -p 8080:8080 -p 8081:8081 --name nj_test_spring_8080 nj_test_spring:0.0.1
 ```
 
-#### 打包前端并运行为容器
+## 6. 打包前端并运行为容器
 
 在前端文件夹 dist 的同一级文件夹下新建 Dockerfile 文件，文件内容如下
 
@@ -83,4 +83,45 @@ docker build -t nj_test_vue:0.0.1 .
 
 ```shell
 docker run -d -p 8888:80 --name nj_test_vue_8888 nj_test_vue:0.0.1
+```
+<br></br>
+
+---
+## 7. 重新部署前后端容器
+```
+cd /usr/local/nj_test/nj_test_vue
+删除dist里面的文件，重新上传
+```
+查看容器、删除容器
+```
+docker ps -a
+docker stop <container-id>
+docker rm <container-id>
+```
+查看镜像、删除镜像
+```
+docker images
+docker rmi <image-id>
+```
+打包前端镜像
+```
+docker build -t nj_test_vue:0.0.1 .
+```
+运行前端容器
+```
+docker run -d -p 8888:80 --name nj_test_vue_8888 nj_test_vue:0.0.1
+```
+<br></br>
+```
+cd ..
+cd nj_test_spring
+删除nj_test-0.0.1-SNAPSHOT，重新上传（在target目录下）
+```
+打包前后端镜像
+```
+docker build -t nj_test_spring:0.0.1 .
+```
+运行后端容器
+```
+docker run -d -p 8080:8080 -p 8081:8081 --name nj_test_spring_8080 nj_test_spring:0.0.1
 ```

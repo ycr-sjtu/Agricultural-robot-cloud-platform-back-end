@@ -22,6 +22,10 @@ public class Robot {
     // 纬度
     private Double lat;
     private String url;
+    private Double vel;
+    private Double freq1;
+
+    private Double freq2;
     @JsonFormat(pattern = "yyyy年MM月dd日 HH:mm", timezone="Asia/Shanghai")
     private Date time;
 }
