@@ -2,27 +2,33 @@ package cn.edu.sjtu.controller;
 
 import cn.edu.sjtu.entity.Robot;
 import cn.edu.sjtu.service.RobotService;
+import cn.edu.sjtu.vo.ResponseVo;
+import cn.edu.sjtu.vo.RobotVo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/robot")
 public class RobotController {
-
+    @Resource
     private final RobotService robotService;
 
     public RobotController(RobotService robotService) {
         this.robotService = robotService;
     }
-
-    @GetMapping("/list")
-    public List<Robot> getList() {
-        return robotService.list();
+    @CrossOrigin
+    @RequestMapping("/list")
+    public ResponseVo<IPage<Robot>> getList(@RequestParam(defaultValue = "1") Integer pageNum ,
+                                                @RequestParam(defaultValue = "20") Integer pageSize ,
+                                                @RequestParam String category_2){
+        return robotService.products(pageNum , pageSize , category_2);
     }
 
+    @CrossOrigin
     @PostMapping
     public String save(@RequestBody Robot robot) {
         if (robot.getLng() > -180 && robot.getLng() < 180 && robot.getLat() > -90 && robot.getLat() < 90) {
@@ -36,6 +42,7 @@ public class RobotController {
         return "新增失败";
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public String remove(@PathVariable("id") Long id) {
         if (robotService.removeById(id)) {
@@ -45,3 +52,5 @@ public class RobotController {
         return "删除失败";
     }
 }
+
+
