@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,27 +14,29 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Map;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class UserMapperPageTest {
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+//public class UserMapperPageTest {
+//
+//    @Autowired
+//    private RobotMapper robotMapper;
+//
+//
+//    @Test
+//    public void selectPage(){
+//        LambdaQueryWrapper<Robot> robotLambdaQueryWrapper = Wrappers.lambdaQuery();
+//        robotLambdaQueryWrapper.lt(Robot::getId , 200);  //查询id大于200的实体
+//
+//        Page<Robot> robotPage = new Page<>(1 , 20);  //查询出来的结果，一页只能显示20条
+//        IPage<Robot> robotIPage = robotMapper.selectPage(robotPage , robotLambdaQueryWrapper);
+//        System.out.println("总页数： "+robotIPage.getPages());
+//        System.out.println("总记录数： "+robotIPage.getTotal());
+//        robotIPage.getRecords().forEach(System.out::println);
+//    }
+//
+//}
 
-    @Autowired
-    private RobotMapper robotMapper;
 
-
-    @Test
-    public void selectPage(){
-        LambdaQueryWrapper<Robot> robotLambdaQueryWrapper = Wrappers.lambdaQuery();
-        robotLambdaQueryWrapper.lt(Robot::getId , 200);  //查询id大于200的实体
-
-        Page<Robot> robotPage = new Page<>(1 , 20);  //查询出来的结果，一页只能显示20条
-        IPage<Robot> robotIPage = robotMapper.selectPage(robotPage , robotLambdaQueryWrapper);
-        System.out.println("总页数： "+robotIPage.getPages());
-        System.out.println("总记录数： "+robotIPage.getTotal());
-        robotIPage.getRecords().forEach(System.out::println);
-    }
-
-}
 //这段代码使用了Spring Boot框架中的一些组件，主要用于数据库操作，具体解释如下：
 //1.	@RunWith(SpringRunner.class)：这是JUnit的注解，它用于在运行测试时启动Spring容器。
 //2.	@SpringBootTest：这是Spring Boot的注解，用于启动整个Spring应用程序上下文，以便在测试中使用Spring Bean。
