@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Agricultural-robot-cloud-platform-back-end" />
         <module name="nj_test" />
       </profile>
     </annotationProcessing>
@@ -14,6 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Agricultural-robot-cloud-platform-back-end" options="-parameters" />
       <module name="nj_test" options="-parameters" />
     </option>
   </component>
