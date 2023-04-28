@@ -125,7 +125,7 @@ public class SocketServer {
      * @param msg
      */
     private void saveData(String msg) {
-        System.out.println("received message：" + msg);
+        System.out.println("received message:" + msg);
         // 校验json格式
         if (JSON.isValidObject(msg)) {
             try {

@@ -1,17 +1,17 @@
-package cn.edu.sjtu.mapper;
-
-import cn.edu.sjtu.entity.Robot;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+//package cn.edu.sjtu.mapper;
+//
+//import cn.edu.sjtu.entity.Robot;
+//import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+//import com.baomidou.mybatisplus.core.metadata.IPage;
+//import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+//import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Map;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.junit4.SpringRunner;
+//
+//import java.util.Map;
 
 
 //@RunWith(SpringRunner.class)
