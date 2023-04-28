@@ -1,12 +1,9 @@
 package cn.edu.sjtu.controller;
-
 import cn.edu.sjtu.entity.Robot;
 import cn.edu.sjtu.service.RobotService;
 import cn.edu.sjtu.vo.ResponseVo;
-import cn.edu.sjtu.vo.RobotVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.Date;
 
@@ -17,14 +14,17 @@ public class RobotController {
     @Resource
     private final RobotService robotService;
 
+
     public RobotController(RobotService robotService) {
         this.robotService = robotService;
     }
+
+
     @CrossOrigin
     @RequestMapping("/list")
     public ResponseVo<IPage<Robot>> getList(@RequestParam(defaultValue = "1") Integer pageNum ,
-                                                @RequestParam(defaultValue = "20") Integer pageSize ,
-                                                @RequestParam String category_2){
+                                            @RequestParam(defaultValue = "20") Integer pageSize ,
+                                            @RequestParam String category_2){
         return robotService.products(pageNum , pageSize , category_2);
     }
 
@@ -51,6 +51,8 @@ public class RobotController {
 
         return "删除失败";
     }
+
+
 }
 
 

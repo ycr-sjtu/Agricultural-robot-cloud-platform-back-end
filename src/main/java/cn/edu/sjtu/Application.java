@@ -6,13 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 @SpringBootApplication
 @MapperScan("cn.edu.sjtu.mapper")
 public class Application {
-
     public static void main(String[] args) throws IOException {
         SpringApplication.run(Application.class, args);
         SocketServer server = new SocketServer();
